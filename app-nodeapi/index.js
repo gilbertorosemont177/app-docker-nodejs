@@ -1,19 +1,19 @@
 const express = require('express')
 const app = express()
 var mysql = require('mysql')
-const port = 3000
+const PORT = 3000
 
 var dbconnection = mysql.createConnection({
-  host: '0.0.0.0',
+  host: '172.17.0.2',
   user: 'root',
   password: 'root',
   database: 'USERSTEST',
-  port:7006
+  port:3306
 });
 
 dbconnection.connect();
   
-app.listen(port, () => {console.log("liste port 3000")})
+app.listen(PORT, () => {console.log(`liste port ${PORT}`)})
 
 app.get('/',(req, res) => {
 
@@ -24,5 +24,7 @@ app.get('/',(req, res) => {
  console.log('username => ', rows[0].usernames)
   })
   //connection.end()
+
+
   res.send('Hello World! 1')
 });
