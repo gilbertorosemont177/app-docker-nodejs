@@ -20,7 +20,7 @@ speed-measure-plugin*.json
 .project
 .classpath
 .c9/
-*.laun
+*.lau
 
 
 # IDE - VSCode
