@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/generic/userservice/userservice';
 
 @Component({
@@ -6,12 +6,16 @@ import { UserService } from 'src/generic/userservice/userservice';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app-angular';
   constructor(private user:UserService){
-      this.user.get();
       
   }
+  ngOnInit(): void {
+    this.user.get().then((result)=>result.subscribe((r=>console.log(r))));
+    console.log("jdjdjjd")
+  }
+
   
 
 }

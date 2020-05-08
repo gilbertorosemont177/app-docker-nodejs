@@ -15,7 +15,7 @@ dbconnection.connect();
   
 app.listen(PORT, () => {console.log(`liste port ${PORT}`)})
 
-app.get('/',(req, res) => {
+app.get('/test',(req, res) => {
 
   let query="SELECT * FROM LoginUsers";
   dbconnection.query(query, (err, rows)=> {
