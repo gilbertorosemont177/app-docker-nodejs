@@ -7,4 +7,4 @@ COPY package*.json /usr/src/app/
 RUN npm install
 COPY . .
 EXPOSE 3000
-CMD node index.js
+CMD nodemon ./appnode/index.js

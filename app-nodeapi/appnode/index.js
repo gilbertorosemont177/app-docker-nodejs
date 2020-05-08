@@ -4,7 +4,7 @@ var mysql = require('mysql')
 const PORT = 3000
 
 var dbconnection = mysql.createConnection({
-  host: '172.17.0.2',
+  host: 'mysqlimage',//modifier ca en creant un reseau
   user: 'root',
   password: 'root',
   database: 'USERSTEST',
@@ -22,9 +22,13 @@ app.get('/',(req, res) => {
     if (err) throw err;
   //console.log('helloworld 0 ')
  console.log('username => ', rows[0].usernames)
+  res.json( {
+            username:rows[0].usernames,
+            password:rows[0].passwords   
+            })
   })
   //connection.end()
 
-
-  res.send('Hello World! 1')
+  
+  
 });

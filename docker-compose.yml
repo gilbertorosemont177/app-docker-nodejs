@@ -1,0 +1,36 @@
+version: "2.4"
+services:
+  
+  #mysqlimage
+  mysqlimage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image:
+      mysqlimage
+    networks:
+      - dbproject
+    container_name: mysqlcontainer
+
+  #nodeimage    
+  nodeimage:
+    build:
+      context: ./app-nodeapi/
+      dockerfile: Dockerfile
+    image:
+      nodeimage
+    container_name: nodecontainer
+    ports:
+    - "5000:3000"
+    volumes:
+    - ./app-nodeapi/appnode/:/usr/src/app/appnode
+    networks:
+      - dbproject
+    depends_on: 
+      - mysqlimage
+  
+#delete network
+networks:
+  dbproject:
+    name: dbproject
+    driver: bridge
