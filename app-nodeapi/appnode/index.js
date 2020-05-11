@@ -4,7 +4,7 @@ var mysql = require('mysql')
 const PORT = 3000
 
 var dbconnection = mysql.createConnection({
-  host: 'mysqlimage',//modifier ca en creant un reseau
+  host: 'mysqlimage',
   user: 'root',
   password: 'root',
   database: 'USERSTEST',

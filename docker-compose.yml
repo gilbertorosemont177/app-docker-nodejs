@@ -1,6 +1,7 @@
-version: "2.4"
+#sudo service docker restart
+#verfier si network existe si true on le suprime
+version: "2.1"
 services:
-  
   #mysqlimage
   mysqlimage:
     build:
@@ -12,12 +13,18 @@ services:
     networks:
       - dbproject
     container_name: mysqlcontainer
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 5
+      
 
   #nodeimage    
   nodeimage:
     build:
       context: ./app-nodeapi/
       dockerfile: Dockerfile
+    restart: always
     image:
       nodeimage
     container_name: nodecontainer
@@ -27,11 +34,13 @@ services:
     - ./app-nodeapi/appnode/:/usr/src/app/appnode
     networks:
       - dbproject
-    depends_on: 
-      - mysqlimage
+    depends_on:
+      mysqlimage:
+        condition: service_healthy
+    
+  
   
 #delete network
 networks:
   dbproject:
-    name: dbproject
     driver: bridge
