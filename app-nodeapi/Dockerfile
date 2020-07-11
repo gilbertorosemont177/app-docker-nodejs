@@ -1,5 +1,5 @@
 
-#NODE // MANQUE CREER UN DOCKER IGNORE
+#NODE 
 FROM node:10.15.1
 WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
